@@ -1,0 +1,42 @@
+CREATE DATABASE railway_reserv;
+CREATE TABLE TrainList(
+    train_Num int AUTO_INCREMENT,
+    train_Name varchar(255) DEFAULT NULL,
+    d_source varchar(255) DEFAULT NULL,
+    destination varchar(255) DEFAULT NULL,
+    ACFare DECIMAL(10,2) DEFAULT NULL,
+    GeneralFare DECIMAL(10,2) DEFAULT NULL,
+    sched_avail varchar(255) DEFAULT NULL,
+    PRIMARY KEY (train_Num)
+    );
+CREATE TABLE TrainStatus (
+    train_Num int DEFAULT NULL,
+    train_date date,
+    AC_NumofSeats int DEFAULT NULL,
+    General_NumofSeats int DEFAULT NULL,
+    NumofAC_Booked int DEFAULT NULL,
+    NumofGeneral_Booked int DEFAULT NULL,
+    FOREIGN KEY (train_Num) REFERENCES trainlist (train_Num)
+    );
+CREATE TABLE passengers(
+    p_name varchar(255) DEFAULT NULL,
+    age int DEFAULT NULL, 
+    sex varchar(255) DEFAULT NULL,
+    p_address varchar(255) DEFAULT NULL,
+    ticket_id int AUTO_INCREMENT,
+    train_Num int DEFAULT NULL,
+    book_date date,
+    reserve_status varchar(255) DEFAULT NULL,
+    train_category varchar(255) DEFAULT NULL,
+    PRIMARY KEY (ticket_id),
+    FOREIGN KEY (train_Num) REFERENCES trainlist (train_Num)
+    );
+ 
+CREATE TABLE passenger_acc (
+    p_username varchar(255) DEFAULT NULL,
+    p_email varchar(255) DEFAULT NULL,
+    p_password varchar(255) DEFAULT NULL,
+    p_gender varchar(255) DEFAULT NULL,
+    p_address varchar(255) DEFAULT NULL,
+    p_contact int DEFAULT NULL
+    );
